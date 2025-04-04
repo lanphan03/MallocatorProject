@@ -27,7 +27,7 @@ public class MemoryAllocator {
 
         allocateMemory("First-Fit", memoryBlocks, processes, "FFoutput.data");
         allocateMemory("Best-Fit", memoryBlocks, processes, "BFoutput.data");
-        allocateMemory("Worst-Fit", memoryBlocks, processes, "WFoutput.data");
+        allocateMemory("", memoryBlocks, processes, "WFoutput.data");
     }
 
     private static List<MemoryBlock> readMemoryBlocks(String filename) throws IOException {
@@ -88,6 +88,7 @@ public class MemoryAllocator {
                         if (chosenBlock == null || block.size > chosenBlock.size) {
                             chosenBlock = block;
                         }
+                    }
                 }
             }
 
@@ -109,8 +110,6 @@ public class MemoryAllocator {
         }
 
         writer.close();
-        }
     }
 }
-
 
