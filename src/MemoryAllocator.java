@@ -25,9 +25,9 @@ public class MemoryAllocator {
         List<MemoryBlock> memoryBlocks = readMemoryBlocks("Minput.data");
         List<Process> processes = readProcessData("Pinput.data");
 
-        allocateMemory("FFoutput.data", memoryBlocks, processes, "First-Fit");
-        allocateMemory("BFoutput.data", memoryBlocks, processes, "Best-Fit");
-        allocateMemory("WFoutput.data", memoryBlocks, processes, "Worst-Fit");
+        allocateMemory("First-Fit", memoryBlocks, processes, "FFoutput.data");
+        allocateMemory("Best-Fit", memoryBlocks, processes, "BFoutput.data");
+        allocateMemory("Worst-Fit", memoryBlocks, processes, "WFoutput.data");
     }
 
     private static List<MemoryBlock> readMemoryBlocks(String filename) throws IOException {
@@ -54,10 +54,10 @@ public class MemoryAllocator {
         return processes;
     }
 
-    private static void allocateMemory(String outputFile, List<MemoryBlock> memoryBlocks, List<Process> processes, String method) throws IOException {
+    private static void allocateMemory(String method, List<MemoryBlock> memoryBlocks, List<Process> processes, String outputFile) throws IOException {
         List<MemoryBlock> blocks = new ArrayList<>();
         for (MemoryBlock mb : memoryBlocks) {
-            blocks.add(new MemoryBlock(mb.start, mb.end)); // Copy memory blocks
+            blocks.add(new MemoryBlock(mb.start, mb.end)); 
         }
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
@@ -88,7 +88,6 @@ public class MemoryAllocator {
                         if (chosenBlock == null || block.size > chosenBlock.size) {
                             chosenBlock = block;
                         }
-                    }
                 }
             }
 
@@ -110,6 +109,8 @@ public class MemoryAllocator {
         }
 
         writer.close();
+        }
     }
 }
+
 
